@@ -9,3 +9,4 @@ if(isset($_GET['postid'])){
 
 header("Location: index.php");
 
+//test
