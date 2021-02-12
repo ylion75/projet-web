@@ -1,0 +1,13 @@
+ROADMAP SITE WEB
+-> Créer BD forum
+-> Faire en sorte que l'acceuil affiche la liste des forums et non des posts
+    - relier les posts à leur forum
+    - afficher la liste des postes lorsqu'on clique sur un forum
+-> Gestion de compte : modification et suppression des comptes
+-> Ajout fonctionnalité commentaire
+    - gérer l'affichage en cascade
+-> upvote / downvote
+    - s'assurer qu'un internaute ne peut voter qu'une seule voit
+-> pouvoir créer un forum
+    - + administration / modération forum
+-> abonnement à un forum
