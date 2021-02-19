@@ -12,6 +12,8 @@ if(!isset($_POST["login"]) || !isset($_POST["password"])){
     goto display;
 }
 
+//$request = $db ->prepare();
+
 $request = $db->prepare("SELECT COUNT(id) FROM user WHERE login= :login");
 $request->execute(["login" => $_POST["login"]]);
 $existinguser = $request->fetch();
@@ -22,8 +24,8 @@ if($existinguser[0] > 0){
 }
 
 $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-$request = $db->prepare("INSERT INTO user (login, password) VALUES (?,?)");
-$request->execute([$_POST["login"], $password]);
+$request = $db->prepare("INSERT INTO user (login, password,email) VALUES (?,?,?)");
+$request->execute([$_POST["login"], $password, $_POST["email"]]);
 //rowCount pour vérifier que tout s'est bien passé
 header("Location: index.php");
 
@@ -43,7 +45,10 @@ display :
         <input type="text" name="login">
         <label for="password">Enter a password</label>
         <input type="password" name="password">
+        <label for="email">Enter your email adress</label>
+        <input required type="email" name="email">
         <input type="submit">
+
     </form>
     </body>
 </html>
