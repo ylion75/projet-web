@@ -40,7 +40,7 @@ if(!isset($_SESSION["user"])){
     <form action="signout.php" method="POST">
         <button type="submit">Déconnexion</button>
     </form>
-    <p>User : <?= $_SESSION["login"] ?></p>
+    <p>User : <?= $_SESSION["user"]["login"] ?></p>
     <form action="add_post.php" method="POST">
         <label for="title">Choose a title</label>
         <input type="text" name="title" id="title">
