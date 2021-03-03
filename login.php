@@ -11,7 +11,6 @@ if(!isset($_POST["login"]) || !isset($_POST["password"])){
     goto display;
 }
 
-$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 $request = $db->prepare("SELECT * FROM user WHERE login= :login");
 $request->execute([
     'login' => $_POST["login"]
@@ -21,17 +20,13 @@ $user = $request->fetch();
 
 
 if($user === null){
-    echo "user null";
     goto display;
 }
-echo $password ."<br>";
-echo $user["password"];
 
 $ok = password_verify($_POST["password"], $user["password"]);
 
 if(!$ok){
     $error = "Login ou mot de passe invalide";
-    echo "Login ou mot de passe invalide";
     goto display;
 }
 
