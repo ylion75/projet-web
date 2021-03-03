@@ -24,10 +24,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
 <head>RedditBis</head>
 <body>
 <?php
-if(!isset($_SESSION["userid"])){
+if(!isset($_SESSION["user"])){
     ?>
     <title>Sign in</title>
-    <form action="index.php" method="POST">
+    <form action="login.php" method="POST">
         <label for="login">Enter your login</label>
         <input type="text" name="login" id="login">
         <label for="password">Enter your password</label>

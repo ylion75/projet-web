@@ -11,3 +11,6 @@ ROADMAP SITE WEB
 -> pouvoir créer un forum
     - + administration / modération forum
 -> abonnement à un forum
+
+
+03/03 : mettre le vérificateur de hash dans le loggin
