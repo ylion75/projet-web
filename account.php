@@ -1,8 +1,28 @@
 <?php
 session_start();
 include("db_connect.php");
+//$id = "login";
 
-$id = "login";
+if(isset($_SESSION['user'])){
+    echo("allez psg!!");
+
+    $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
+    //$requser->execute(array($_SESSION['user'])); //array to string conversion error
+    $user = $requser->fetch();
+
+    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['email']) {
+        $newmail = htmlspecialchars($_POST['newmail']);
+        $insertmail = $db->prepare("UPDATE user SET email = ? WHERE id = ?");
+        $insertmail->execute(array($newmail, $_SESSION['user']));
+        header('Location: index');
+    }
+}
+else{
+    echo("erreur");
+}
+
+
+/*
 if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
     $maxSize = 2097152;
     $validExtensions = array('jpg', 'jpeg', 'gif', 'png');
@@ -28,7 +48,9 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
         $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
     }
 }
+*/
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -38,12 +60,21 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 <h1>Edit my profile</h1>
 <form action="signup.php" method="POST">
     <p>User : <?= $_SESSION["user"]["login"] ?> (you can't change your user name)</p>
+    <label for="email">Change my email</label>
+    <input required type="email" name="newemail" placeholder=<?= $_SESSION["user"]["email"] ?>><br><br>
+
+    <input type="submit" value = "Update my profil">
+
+
+
+
+    <!--
+    <br><br><br><br>
     <p>
         <label for="current_password">Your current password</label>
         <br/>
         <input type="password" name="current_password" id="current_password" />
     </p>
-
     <p>
         <label for="new_password">Your new password</label>
         <br/>
@@ -55,16 +86,14 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
         <input type="password" name="new_password" id="new_password" />
     </p>
 
-    <br><br><br><br><br><br><br><br><br><br>
-
-
+    <br><br><br><br>
     <label for="password">Password</label>
     <input type="password" name="password"><br><br>
     <label for="email">Email</label>
     <input required type="email" name="email"><br><br>
     <label for="avatar">Add or udpate my avatar</label>
     <input type="file" name="avatar"><br><br>
-    <input type="submit">
+    -->
 
 
 </form>
