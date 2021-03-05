@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("db_connect.php");
 
 $id = "login";
 if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
@@ -35,15 +37,35 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 <title>Account</title>
 <h1>Edit my profile</h1>
 <form action="signup.php" method="POST">
-    <label for="login">Login name</label>
-    <input type="text" name="login">
+    <p>User : <?= $_SESSION["user"]["login"] ?> (you can't change your user name)</p>
+    <p>
+        <label for="current_password">Your current password</label>
+        <br/>
+        <input type="password" name="current_password" id="current_password" />
+    </p>
+
+    <p>
+        <label for="new_password">Your new password</label>
+        <br/>
+        <input type="password" name="new_password" id="new_password" />
+    </p>
+    <p>
+        <label for="new_password">Confirm your password</label>
+        <br/>
+        <input type="password" name="new_password" id="new_password" />
+    </p>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password"><br><br>
     <label for="email">Email</label>
-    <input required type="email" name="email">
-    <input type="submit">
-    <label for="avatar">Add an avatar</label>
+    <input required type="email" name="email"><br><br>
+    <label for="avatar">Add or udpate my avatar</label>
     <input type="file" name="avatar"><br><br>
+    <input type="submit">
+
 
 </form>
 </body>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("db_connect.php");
-//$error = "";
+
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
 goto display;
@@ -12,8 +12,6 @@ if(!isset($_POST["login"]) || !isset($_POST["password"])){
     goto display;
 }
 
-//$request = $db ->prepare();
-
 $request = $db->prepare("SELECT COUNT(id) FROM user WHERE login= :login");
 $request->execute(["login" => $_POST["login"]]);
 $existinguser = $request->fetch();
@@ -22,10 +20,6 @@ if($existinguser[0] > 0){
     $error = "Ce login existe déjà";
     goto display;
 }
-
-
-// PROBLEME UPDATEAVATAR
-//$id = (isset($_POST['id']) ? $_POST['id'] : '');
 
 if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
     $maxSize = 2097152;
