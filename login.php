@@ -11,12 +11,14 @@ if(!isset($_POST["login"]) || !isset($_POST["password"])){
     goto display;
 }
 
-$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 $request = $db->prepare("SELECT * FROM user WHERE login= :login");
 $request->execute([
     'login' => $_POST["login"]
 ]);
 $user = $request->fetch();
+//var_dump($user);
+
+
 if($user === null){
     goto display;
 }
@@ -42,7 +44,6 @@ display :
 <head>RedditBis</head>
 <body>
 <title>Log in</title>
-<?= $error ?>
     <form action="login.php" method="POST">
         <label for="login">Enter your login</label>
         <input type="text" name="login">

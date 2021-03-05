@@ -1,13 +1,22 @@
 ROADMAP SITE WEB
+OK :
 -> Créer BD forum
--> Faire en sorte que l'acceuil affiche la liste des forums et non des posts
-    - relier les posts à leur forum
-    - afficher la liste des postes lorsqu'on clique sur un forum
+-> Création de compte
+
+Presque OK :
 -> Gestion de compte : modification et suppression des comptes
 -> Ajout fonctionnalité commentaire
     - gérer l'affichage en cascade
+-> Faire en sorte que l'acceuil affiche la liste des forums et non des posts
+    - relier les posts à leur forum
+    - afficher la liste des postes lorsqu'on clique sur un forum
+
+TO DO :
 -> upvote / downvote
     - s'assurer qu'un internaute ne peut voter qu'une seule voit
 -> pouvoir créer un forum
     - + administration / modération forum
 -> abonnement à un forum
+
+
+03/03 : mettre le vérificateur de hash dans le loggin
