@@ -8,7 +8,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         if(isset($_POST["title"])){
             if(isset($_POST["post"])){
                 $post = $_POST["post"];
-            }else{
+            }
+            else{
                 $post = "";
             }
             //$request = $db->exec("INSERT INTO post VALUES (null, $title, $post, now(), {$_SESSION["userid"]})");
@@ -16,6 +17,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             $db->prepare($sql)->execute([$_POST["title"], $post, date("Y-m-d H:i:s"), $_SESSION["userid"]]);  
         }
     }
+
+        
 }
 
 header("Location: index.php");
