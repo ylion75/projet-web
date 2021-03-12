@@ -7,12 +7,12 @@ Nous avons uniquement travaillé sur la partie back-end avec PHP et une base de 
 Installation du projet 
 //à faire 
 
-Liste des fonctionnalités 
--> Création et modification d'un compte utilisateur
--> Ajout d'un post et d'un commmentaire
--> Login / logout
--> Upvote & downvote d'un post 
--> Suppression d'un poste
+Liste des fonctionnalités <br />
+-> Création et modification d'un compte utilisateur <br />
+-> Ajout d'un post et d'un commmentaire <br />
+-> Login / logout <br />
+-> Upvote & downvote d'un post <br />
+-> Suppression d'un poste <br />
 
 
 index
