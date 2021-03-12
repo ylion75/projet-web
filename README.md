@@ -8,6 +8,13 @@ Installation du projet
 //à faire 
 
 Liste des fonctionnalités 
+-> Création et modification d'un compte utilisateur
+-> Ajout d'un post et d'un commmentaire
+-> Login / logout
+-> Upvote & downvote d'un post 
+-> Suppression d'un poste
+
+
 index
 account
 add_comment
