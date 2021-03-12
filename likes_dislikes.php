@@ -10,13 +10,13 @@ if(isset ($_GET['t'], $_GET['id'])){
             
             
             $sql = "INSERT INTO likes (post_id, user_id) VALUES (?,?)";
-            $db->prepare($sql)->execute([$_GET["id"],$_SESSION["userid"]]); 
+            $db->prepare($sql)->execute([$_GET["id"],$_SESSION["user"]["id"]]); 
         } 
 
             elseif($gett == 3)
             {
                 $sql = "INSERT INTO dislikes (post_id,user_id) VALUES (?,?)";
-                $db->prepare($sql)->execute([$_GET["id"], $_SESSION["userid"]]); 
+                $db->prepare($sql)->execute([$_GET["id"], $_SESSION["user"]["id"]]); 
             } }
 
         
