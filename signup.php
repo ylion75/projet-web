@@ -1,6 +1,5 @@
 <?php
-session_start();
-include("db_connect.php");
+require("header.php");
 
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
@@ -58,10 +57,6 @@ display :
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>RedditBis</head>
-<body>
 <title>Sign up</title>
 <h1>Create a new account</h1>
 <?php if(isset($error)) echo $error ?>
@@ -77,5 +72,7 @@ display :
         <input type="submit">
 
     </form>
-    </body>
-</html>
+    
+<?php
+require("footer.php");
+?>

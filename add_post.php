@@ -1,20 +1,27 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] === "POST"){
-    if(isset($_SESSION["user"])){
-        if(isset($_POST["title"])){
-            if(isset($_POST["post"])){
-                $post = $_POST["post"];
-            }
-            else{
-                $post = "";
-            }
-            //$request = $db->exec("INSERT INTO post VALUES (null, $title, $post, now(), {$_SESSION["userid"]})");
-            $sql = "INSERT INTO post (title, content, date, author) VALUES (?,?,?,?)";
-            $db->prepare($sql)->execute([$_POST["title"], $post, date("Y-m-d H:i:s"), $_SESSION["userid"]]);  
-        }
-    }
-
-        
+require("header.php");
+if($_SERVER['REQUEST_METHOD'] !== "POST"){
+    echo "erreur post";
+    goto relocation;
 }
-
-header("Location: /index");
+if(!isset($_SESSION["user"])){
+    echo "erreur user";
+    goto relocation;
+}
+if(!isset($_POST["title"])){
+    echo "erreur title";
+    goto relocation;
+}
+if(!isset($_GET["forum_id"])){
+    echo "erreur forum id";
+    goto relocation;
+}
+if(isset($_POST["post"])){
+    $post = $_POST["post"];
+}else{
+    $post = "";
+}
+$sql = "INSERT INTO post (title, content, date, author, forum_id) VALUES (?,?,?,?,?)";
+$db->prepare($sql)->execute(array($_POST["title"], $post, date("Y-m-d H:i:s"), $_SESSION["user"]["id"], $_GET["forum_id"]));  
+relocation :
+header("Location: forum.php?forum_id={$_GET["forum_id"]}");

@@ -1,4 +1,6 @@
 <?php
+require("header.php");
+
 if(isset($_SESSION['user'])){
     echo("allez psg!!");
 
@@ -48,10 +50,8 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>RedditBis</head>
-<body>
+
+
 <title>Account</title>
 <h1>Edit my profile</h1>
 <form action="signup.php" method="POST">
@@ -93,5 +93,7 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 
 
 </form>
-</body>
-</html>
+
+<?php
+require("footer.php");
+?>

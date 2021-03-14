@@ -1,4 +1,5 @@
 <?php
+require("header.php");
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
 }
@@ -35,10 +36,6 @@ display :
 
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>RedditBis</head>
-    <body>
         <title>Log in</title>
         <p> 
         <?php 
@@ -54,5 +51,7 @@ display :
             <input type="password" name="password">
             <input type="submit">
         </form>
-    </body>
-</html>
+        
+<?php
+require("footer.php");
+?>

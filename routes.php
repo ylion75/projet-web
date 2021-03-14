@@ -1,6 +1,6 @@
 <?php
 return [
-    "home" => "home.php",
+    "/home" => "home.php",
     "index" => "home.php",
     "login" => "login.php",
     "signup" => "signup.php",
