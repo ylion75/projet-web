@@ -1,8 +1,4 @@
 <?php
-session_start();
-include("db_connect.php");
-//$id = "login";
-
 if(isset($_SESSION['user'])){
     echo("allez psg!!");
 

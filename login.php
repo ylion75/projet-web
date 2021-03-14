@@ -1,7 +1,4 @@
 <?php
-session_start();
-include("db_connect.php");
-//$error = "";
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
 }
@@ -16,7 +13,6 @@ $request->execute([
     'login' => $_POST["login"]
 ]);
 $user = $request->fetch();
-//var_dump($user);
 
 
 if($user === null){
@@ -41,15 +37,22 @@ display :
 
 <!DOCTYPE html>
 <html>
-<head>RedditBis</head>
-<body>
-<title>Log in</title>
-    <form action="login.php" method="POST">
-        <label for="login">Enter your login</label>
-        <input type="text" name="login">
-        <label for="password">Enter your password</label>
-        <input type="password" name="password">
-        <input type="submit">
-    </form>
+    <head>RedditBis</head>
+    <body>
+        <title>Log in</title>
+        <p> 
+        <?php 
+            if(isset($error)){
+                echo $error;
+            }
+        ?> 
+        </p>
+        <form action="login.php" method="POST">
+            <label for="login">Enter your login</label>
+            <input type="text" name="login">
+            <label for="password">Enter your password</label>
+            <input type="password" name="password">
+            <input type="submit">
+        </form>
     </body>
 </html>

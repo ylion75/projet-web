@@ -1,10 +1,6 @@
 <?php
-session_start();
-
-include("db_connect.php");
-
 if($_SERVER['REQUEST_METHOD'] === "POST"){
-    if(isset($_SESSION["userid"])){
+    if(isset($_SESSION["user"])){
         if(isset($_POST["title"])){
             if(isset($_POST["post"])){
                 $post = $_POST["post"];
@@ -21,4 +17,4 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         
 }
 
-header("Location: index.php");
+header("Location: /index");

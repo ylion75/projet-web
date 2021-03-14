@@ -1,13 +1,11 @@
 <?php
-require_one("/db_connect.php");
-
 if(!isset($_GET["forum_id"])){
     header("/error404");
     exit;
 }
 $forumId = $_GET["forum_id"];
 
-$request = "SELECT f.id as forum_id, f.*, c.nom as category_name
+$request = "SELECT f.*, c.nom as category_name
             FROM forum f LEFT JOIN categorie c ON f.categorie_id=c.id
             WHERE f.id=?";
 $forum = $db->prepare($request)->execute($forumId);
@@ -28,6 +26,15 @@ if($forum === null){
         <dt>Date de creation</dt><dd><?= $forum["dateCreation"] ?></dd>
     </dl>
 </div>
+
+<h2>Add a post :<h2>
+<form action="add_post.php?forum_id=<?= $forum["id"] ?>" method="POST">
+    <label for="title">Choose a title</label>
+    <input type="text" name="title" id="title">
+    <label for="post">Enter your message</label>
+    <input type="text" name="post" id="post">
+    <input type="submit">
+</form>
 
 <h2>Posts</h2>
 

@@ -1,6 +1,6 @@
 <?php
 $sql = "SELECT p.*, u.login FROM user u LEFT JOIN post p ON u.id=p.author WHERE p.forum_id=? ORDER BY p.date";
-$posts = $db->prepare($sql)->execute($forum["forum_id"]);
+$posts = $db->prepare($sql)->execute([$forum["forum_id"]]);
 
 foreach($posts as $post) {
     $sql = "SELECT like_id 
@@ -19,7 +19,7 @@ foreach($posts as $post) {
             LEFT JOIN post p ON p.id=c.parent_id
             WHERE p.id=?
             ORDER BY c.date, p.author";
-    $comments = $db->prepare($sql)->execute($post["id"]);
+    $comments = $db->prepare($sql)->execute([$post["id"]]);
     ?>
     <div>
         <dl>
@@ -36,7 +36,7 @@ foreach($posts as $post) {
             <dt><a href="likes_dislikes.php?t=3&id=<?= $post["id"] ?>">Dislike</a></dt>
                 <dd>(<?= $likes ?>)</dd>
     <?php
-        if(isset($_SESSION["userid"]) && $post["author"] === $_SESSION["userid"]) {
+        if(isset($_SESSION["user"]) && $post["author"] === $_SESSION["user"]["id"]) {
     ?>
             <dt><a href="deletePost.php?postid=<?= $post["id"] ?>">Delete</a></dt>
                 <dd></dd>
