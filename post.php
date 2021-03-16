@@ -96,7 +96,7 @@ $comments = $db->query("SELECT c.*, u.login
 <?php
     if(isset($_SESSION["user"])){
 ?>
-<form action="add_comment.php?post_id=<?= $post["id"] ?>" method="POST">
+<form action="/add_comment?post_id=<?= $post["id"] ?>" method="POST">
     <label for="comment">Add a comment:</label>
     <input type="text" name="comment" id="comment">
     <input type="submit">

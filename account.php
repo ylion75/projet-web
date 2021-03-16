@@ -2,8 +2,6 @@
 include("header.php");
 
 if(isset($_SESSION['user'])){
-    echo("allez psg!!");
-
     $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
     //$requser->execute(array($_SESSION['user'])); //array to string conversion error
     $user = $requser->fetch();

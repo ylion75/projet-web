@@ -13,6 +13,7 @@ return [
     "/forum" => "forum.php",
     "/post" => "post.php",
     "/add_comment" => "add_comment.php",
+    "/likes_dislikes" => "likes_dislikes.php",
     "/categorie" => "categorie.php",
     "/page_not_found" => "error404.php",
 ];
