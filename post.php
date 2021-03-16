@@ -2,7 +2,7 @@
 require("header.php");
 
 if(!isset($_GET["post_id"])){
-    header("index.php");
+    header("Location: /page_not_found?error=post inconnu");
     exit;
 }
 
@@ -13,6 +13,11 @@ $sql = "SELECT p.*, u.login, f.nomForum as forum_name, f.idForum
 $request = $db->prepare($sql);
 $request->execute(array($_GET["post_id"]));
 $post = $request->fetch();
+
+if($post === false){
+    header("Location: /page_not_found?error=post inconnu");
+    exit;
+}
 
 $sql = "SELECT like_id 
         FROM likes 
@@ -41,7 +46,7 @@ $comments = $db->query("SELECT c.*, u.login
                         WHERE p.id = {$post["id"]}
                         ORDER BY c.date, p.author")->fetchAll();
 ?>
-<h1><a href="forum.php?forum_id=<?= $post["idForum"] ?>"><?= $post["forum_name"] ?></a></h1>
+<h1><a href="/forum?forum_id=<?= $post["idForum"] ?>"><?= $post["forum_name"] ?></a></h1>
 <div>
     <dl>
         <dt>Title</dt>
@@ -55,7 +60,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="likes_dislikes.php?t=2&id=<?= $post["id"] ?>">Like</a>
+            <a href="/likes_dislikes?t=2&id=<?= $post["id"] ?>">Like</a>
             <?php 
                 }else{
             ?>
@@ -68,7 +73,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="likes_dislikes.php?t=3&id=<?= $post["id"] ?>">Dislike</a>
+            <a href="/likes_dislikes?t=3&id=<?= $post["id"] ?>">Dislike</a>
             <?php 
                 }else{
             ?>
@@ -80,7 +85,7 @@ $comments = $db->query("SELECT c.*, u.login
 <?php
     if(isset($_SESSION["user"]) && $post["author"] === $_SESSION["user"]["id"]) {
 ?>
-        <dt><a href="deletePost.php?postid=<?= $post["id"] ?>">Delete</a></dt>
+        <dt><a href="/delete_post?postid=<?= $post["id"] ?>">Delete</a></dt>
             <dd></dd>
 <?php
     }

@@ -29,7 +29,7 @@ if(!$ok){
 }
 
 $_SESSION["user"] = $user;
-header("Location: index.php");
+header("Location: /home");
 exit;
 
 
@@ -45,7 +45,7 @@ display :
     }
 ?> 
 </p>
-<form action="login.php" method="POST">
+<form action="/login" method="POST">
     <label for="login">Enter your login</label>
     <input type="text" name="login">
     <label for="password">Enter your password</label>

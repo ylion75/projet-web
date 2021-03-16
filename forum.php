@@ -2,7 +2,7 @@
 require("header.php");
 
 if(!isset($_GET["forum_id"])){
-    header("/home");
+    header("Location: /page_not_found?error=forum inconnu");
     exit;
 }
 
@@ -15,7 +15,7 @@ $request->execute(array($_GET["forum_id"]));
 $forum = $request->fetch();
 
 if($forum === false){
-    header("/home");
+    header("Location: /page_not_found?error=forum inconnu");
     exit;
 }
 

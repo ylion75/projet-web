@@ -12,10 +12,10 @@ if($forums !== null){
 ?>
 <div>
     <dl>
-        <dt>Nom</dt><dd><a href="forum.php?forum_id=<?= $forum["idForum"] ?>"><?= $forum["nomForum"] ?></a></dd>
+        <dt>Nom</dt><dd><a href="/forum?forum_id=<?= $forum["idForum"] ?>"><?= $forum["nomForum"] ?></a></dd>
         <dt>Description</dt><dd><?= $forum["description"] ?></dd>
         <dt>Date de creation</dt><dd><?= $forum["dateCreation"] ?></dd>
-        <dt><a href="categorie?categorie_id=<?= $forum["categorie_id"] ?>">Categorie</a></dt><dd><?= $forum["nom"] ?></dd>
+        <dt><a href="/categorie?categorie_id=<?= $forum["categorie_id"] ?>">Categorie</a></dt><dd><?= $forum["nom"] ?></dd>
     </dl>
 </div>
 <?php

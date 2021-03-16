@@ -2,15 +2,12 @@
 include("header.php");
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
-    echo "erreur post";
     goto relocation;
 }
 if(!isset($_SESSION["user"])){ 
-    echo "erreur user";
     goto relocation;
 }
 if(!isset($_POST["comment"])){
-    echo "erreur comment";
     goto relocation;
 }
         

@@ -59,7 +59,7 @@ display :
 <h1>Sign up</h1>
 <h2>Create a new account</h2>
 <?php if(isset($error)) echo $error ?>
-    <form action="signup.php" method="POST" enctype="multipart/form-data">
+    <form action="/signup" method="POST" enctype="multipart/form-data">
         <label for="login">Enter a login</label>
         <input type="text" name="login"><br><br>
         <label for="password">Enter a password</label>

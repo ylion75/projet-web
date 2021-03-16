@@ -2,19 +2,15 @@
 require("header.php");
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
-    echo "erreur post";
     goto relocation;
 }
 if(!isset($_SESSION["user"])){
-    echo "erreur user";
     goto relocation;
 }
 if(!isset($_POST["title"])){
-    echo "erreur title";
     goto relocation;
 }
 if(!isset($_GET["forum_id"])){
-    echo "erreur forum id";
     goto relocation;
 }
 if(isset($_POST["post"])){

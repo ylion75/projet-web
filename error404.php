@@ -13,3 +13,6 @@ $error = $_GET["error"];
     }
 ?>
 </p>
+
+<?php
+    require("footer.php");
