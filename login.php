@@ -1,5 +1,6 @@
 <?php
-require("header.php");
+include("header.php");
+
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
 }
@@ -36,22 +37,21 @@ display :
 
 ?>
 
-        <title>Log in</title>
-        <p> 
-        <?php 
-            if(isset($error)){
-                echo $error;
-            }
-        ?> 
-        </p>
-        <form action="login.php" method="POST">
-            <label for="login">Enter your login</label>
-            <input type="text" name="login">
-            <label for="password">Enter your password</label>
-            <input type="password" name="password">
-            <input type="submit">
-        </form>
-        
+<title>Log in</title>
+<p> 
+<?php 
+    if(isset($error)){
+        echo $error;
+    }
+?> 
+</p>
+<form action="login.php" method="POST">
+    <label for="login">Enter your login</label>
+    <input type="text" name="login">
+    <label for="password">Enter your password</label>
+    <input type="password" name="password">
+    <input type="submit">
+</form>
 <?php
-require("footer.php");
+    include("footer.php");
 ?>

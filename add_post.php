@@ -1,5 +1,6 @@
 <?php
 require("header.php");
+
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     echo "erreur post";
     goto relocation;
@@ -24,4 +25,4 @@ if(isset($_POST["post"])){
 $sql = "INSERT INTO post (title, content, date, author, forum_id) VALUES (?,?,?,?,?)";
 $db->prepare($sql)->execute(array($_POST["title"], $post, date("Y-m-d H:i:s"), $_SESSION["user"]["id"], $_GET["forum_id"]));  
 relocation :
-header("Location: forum.php?forum_id={$_GET["forum_id"]}");
+header("Location: /forum?forum_id={$_GET["forum_id"]}");

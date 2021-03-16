@@ -1,24 +1,26 @@
 <?php
 session_start();
-require("db_connect.php");
+require_once("db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
-    <head><a href="index.php">RedditBis</a></head>
+    <head>
+        <title>RedditBis</title>
+    </head>
     <body>
     <?php
         if(!isset($_SESSION["user"])){
     ?>
-        <title>Welcome stranger !</title>
+        <h1><a href="/home">Welcome stranger !</a></h1>
         
-        <a href="login.php">Se connecter</a>
-        <a href="signup.php">S'inscrire</a>
+        <a href="/login">Se connecter</a>
+        <a href="/signup">S'inscrire</a>
     <?php
         }else{ 
     ?>
-        <title>Welcome <?= $_SESSION["user"]["login"] ?>!</title>
-        <!--<a href="account.php">Mon Compte</a>-->
-        <a href="signout.php">Déconnexion</a>
+        <h1><a href="/home">Welcome <?= $_SESSION["user"]["login"] ?>!</a></h1>
+        <a href="/account">Mon Compte</a>
+        <a href="/signout">Déconnexion</a>
     <?php 
         } 
     ?>

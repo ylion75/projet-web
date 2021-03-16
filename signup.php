@@ -1,7 +1,6 @@
 <?php
 require("header.php");
 
-
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
 goto display;
 }
@@ -51,14 +50,14 @@ $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 $request = $db->prepare("INSERT INTO user (login, password,email) VALUES (?,?,?)");
 $request->execute([$_POST["login"], $password, $_POST["email"]]);
 //rowCount pour vérifier que tout s'est bien passé
-header("Location: index.php");
+header("Location: /home");
 
 display :
 
 ?>
 
-<title>Sign up</title>
-<h1>Create a new account</h1>
+<h1>Sign up</h1>
+<h2>Create a new account</h2>
 <?php if(isset($error)) echo $error ?>
     <form action="signup.php" method="POST" enctype="multipart/form-data">
         <label for="login">Enter a login</label>
@@ -72,7 +71,6 @@ display :
         <input type="submit">
 
     </form>
-    
 <?php
-require("footer.php");
+    require("footer.php");
 ?>

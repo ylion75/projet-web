@@ -1,5 +1,5 @@
 <?php
-require("header.php");
+include("header.php");
 
 if(isset($_SESSION['user'])){
     echo("allez psg!!");
@@ -93,7 +93,6 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 
 
 </form>
-
 <?php
-require("footer.php");
+    include("footer.php");
 ?>

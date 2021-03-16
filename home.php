@@ -1,4 +1,6 @@
 <?php
+include("header.php");
+
 $sql = "SELECT f.*, c.nom, c.id as categorie_id FROM forum f LEFT JOIN categorie c ON f.categorie_id=c.id";
 $forums = $db->query($sql)->fetchAll();
 if($forums !== null){
@@ -19,4 +21,5 @@ if($forums !== null){
 <?php
 }
 }
+include("footer.php");
 ?>

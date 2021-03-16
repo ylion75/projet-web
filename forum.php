@@ -1,7 +1,8 @@
 <?php
 require("header.php");
+
 if(!isset($_GET["forum_id"])){
-    header("index.php");
+    header("/home");
     exit;
 }
 
@@ -14,7 +15,7 @@ $request->execute(array($_GET["forum_id"]));
 $forum = $request->fetch();
 
 if($forum === false){
-    header("index.php");
+    header("/home");
     exit;
 }
 
@@ -39,7 +40,7 @@ $posts = $request->fetchAll();
     if(isset($_SESSION["user"])){
 ?>
 <h2>Add a post :<h2>
-<form action="add_post.php?forum_id=<?= $forum["idForum"] ?>" method="POST">
+<form action="/add_post?forum_id=<?= $forum["idForum"] ?>" method="POST">
     <label for="title">Choose a title</label>
     <input type="text" name="title" id="title">
     <label for="post">Enter your message</label>
@@ -56,13 +57,13 @@ $posts = $request->fetchAll();
 ?>
 <div>
     <dl>
-        <dt>Title</dt><dd><a href="post.php?post_id=<?= $post["id"] ?>"><?= $post["title"] ?></a></dd>
+        <dt>Title</dt><dd><a href="/post?post_id=<?= $post["id"] ?>"><?= $post["title"] ?></a></dd>
         <dt>Author</dt><dd><?= $post["login"] ?></dd>
         <dt>Date de Creation</dt><dd><?= $post["date"] ?></dd>
         <?php 
             if(isset($_SESSION["user"]) && $_SESSION["user"]["id"] === $post["user_id"]){
         ?>
-        <dt><a href="deletePost.php?postid=<?= $post["id"] ?>">Delete</a></dt><dd></dd>
+        <dt><a href="/delete_post?postid=<?= $post["id"] ?>">Delete</a></dt><dd></dd>
         <?php
             }
         ?>

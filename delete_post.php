@@ -1,7 +1,6 @@
 <?php
 require("header.php");
 
-
 if(isset($_GET['postid'])){
     $sql = "SELECT f.idForum 
             FROM forum f LEFT JOIN post p ON p.forum_id=f.idForum
@@ -13,4 +12,4 @@ if(isset($_GET['postid'])){
     $db->prepare("DELETE FROM post WHERE post.id=?")->execute(array($_GET['postid']));
 }
 
-header("Location: forum.php?forum_id={$forumId["idForum"]}");
+header("Location: /forum?forum_id={$forumId["idForum"]}");
