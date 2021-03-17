@@ -6,7 +6,7 @@ $forums = $db->query($sql)->fetchAll();
 if($forums !== null){
 ?>
 
-<h1>Tous les forums :<h1>
+<h2>Tous les forums :<h2>
 <?php 
     foreach($forums as $forum){ 
 ?>
