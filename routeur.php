@@ -7,7 +7,7 @@ $routes = require("routes.php");
 $path = explode("?", basename($_SERVER['REQUEST_URI']));
 //var_dump($path);
 if(!isset($routes[$path[0]])){
-    include($routes["/home"]);
+    include($routes["home"]);
 }else{
     include($routes[$path[0]]);
 }
