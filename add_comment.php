@@ -1,6 +1,5 @@
 <?php
 include("header.php");
-include("redirect.php");
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto relocation;

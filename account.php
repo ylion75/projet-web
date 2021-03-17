@@ -1,6 +1,5 @@
 <?php
 include("header.php");
-include("redirect.php");
 
 if(isset($_SESSION['user'])){
     $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
