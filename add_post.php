@@ -21,4 +21,4 @@ if(isset($_POST["post"])){
 $sql = "INSERT INTO post (title, content, date, author, forum_id) VALUES (?,?,?,?,?)";
 $db->prepare($sql)->execute(array($_POST["title"], $post, date("Y-m-d H:i:s"), $_SESSION["user"]["id"], $_GET["forum_id"]));  
 relocation :
-header("Location: /forum?forum_id={$_GET["forum_id"]}");
+header("Location: ".redirect("//forum?forum_id={$_GET["forum_id"]}"));

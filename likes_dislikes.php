@@ -19,4 +19,4 @@ if(isset ($_GET['t'], $_GET['id'])){
 
         
 
-header("Location: /post?post_id={$_GET["id"]}");
+header("Location: ".redirect("/post?post_id={$_GET["id"]}"));

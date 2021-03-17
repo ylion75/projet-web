@@ -12,4 +12,4 @@ if(isset($_GET['postid'])){
     $db->prepare("DELETE FROM post WHERE post.id=?")->execute(array($_GET['postid']));
 }
 
-header("Location: /forum?forum_id={$forumId["idForum"]}");
+header("Location: ".redirect("//forum?forum_id={$forumId["idForum"]}"));

@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+include("redirect.php");
 
 if(isset($_SESSION['user'])){
     $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
@@ -10,7 +11,7 @@ if(isset($_SESSION['user'])){
         $newmail = htmlspecialchars($_POST['newmail']);
         $insertmail = $db->prepare("UPDATE user SET email = ? WHERE id = ?");
         $insertmail->execute(array($newmail, $_SESSION['user']));
-        header('Location: /home');
+        header("Location: ".redirect("/home"));
     }
 }
 else{
@@ -52,7 +53,7 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 
 <title>Account</title>
 <h1>Edit my profile</h1>
-<form action="/signup" method="POST">
+<form action="<?= redirect("/signup"); ?>" method="POST">
     <p>User : <?= $_SESSION["user"]["login"] ?> (you can't change your user name)</p>
     <label for="email">Change my email</label>
     <input required type="email" name="newemail" placeholder=<?= $_SESSION["user"]["email"] ?>><br><br>
