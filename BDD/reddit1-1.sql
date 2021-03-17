@@ -60,7 +60,7 @@ CREATE TABLE `comment` (
   `author` int(11) NOT NULL,
   `date` date NOT NULL,
   `parent_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `comment`
@@ -90,7 +90,8 @@ CREATE TABLE `dislikes` (
   `dislike_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Déchargement des données de la table `dislikes`
@@ -122,7 +123,8 @@ CREATE TABLE `forum` (
   `dateCreation` date NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `categorie_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Déchargement des données de la table `forum`
@@ -144,7 +146,8 @@ CREATE TABLE `likes` (
   `like_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Déchargement des données de la table `likes`
@@ -192,7 +195,8 @@ CREATE TABLE `post` (
   `date` date NOT NULL,
   `author` int(11) NOT NULL,
   `forum_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Déchargement des données de la table `post`
@@ -218,7 +222,8 @@ CREATE TABLE `user` (
   `password` varchar(80) NOT NULL,
   `email` varchar(70) NOT NULL,
   `avatar` varchar(70) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Déchargement des données de la table `user`

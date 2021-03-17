@@ -22,14 +22,14 @@ if($post === false){
 $sql = "SELECT like_id 
         FROM likes 
         WHERE post_id=?";
-$likes = $db->prepare("SELECT like_id FROM likes WHERE post_id= ? ");
+$likes = $db->prepare("SELECT post_id FROM likes WHERE post_id= ? ");
 $likes->execute(array($post["id"]));
 $likes =  $likes->rowCount();
 
 $sql = "SELECT dislike_id 
         FROM dislikes 
         WHERE post_id=?";
-$dislikes = $db->prepare("SELECT dislike_id FROM dislikes WHERE post_id= ?");
+$dislikes = $db->prepare("SELECT post_id FROM dislikes WHERE post_id= ?");
 $dislikes->execute(array($post["id"]));
 $dislikes =  $dislikes->rowCount();
 
@@ -60,7 +60,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="<?= redirect("/likes_dislikes?t=2&id={$post["id"]}") ?>">Like</a>
+            <a href="<?= redirect("/likes?post_id={$post["id"]}") ?>">Like</a>
             <?php 
                 }else{
             ?>
@@ -73,7 +73,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="<?= redirect("/likes_dislikes?t=3&id={$post["id"]}") ?>">Dislike</a>
+            <a href="<?= redirect("/dislikes?post_id={$post["id"]}") ?>">Dislike</a>
             <?php 
                 }else{
             ?>

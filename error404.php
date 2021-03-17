@@ -1,7 +1,11 @@
 <?php
 require("header.php");
+if(!isset($_GET["error"])){
+    $error = "";
+}else{
+    $error = $_GET["error"];
+}
 
-$error = $_GET["error"];
 ?>
 <h1>Page not found</h1>
 <p>
