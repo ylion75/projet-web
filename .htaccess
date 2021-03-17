@@ -1,0 +1,9 @@
+# Activer le module de ré-écriture.
+RewriteEngine On
+# On déclare que toutes les ré-écritures sont relatives à un dossier de base.
+RewriteBase /
+# Si le chemin demandé n'existe pas, et n'est pas un dossier, on redirige vers index.php.
+# Ce qui permet de gérer les images correctement.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ projet-web-Dev/routeur.php [L]

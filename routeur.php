@@ -1,9 +1,14 @@
 <?php
 $routes = require("routes.php");
-$uri = explode('?', $_SERVER['REQUEST_URI']);
-
-if(!isset($routes[$uri[0]])){
-    include($routes["/login"]);
+//$uri = explode('/', $_SERVER['REQUEST_URI']);
+//var_dump($uri);
+//$path = explode('?', $uri[2]);
+//var_dump($path[0]);
+$path = explode("?", basename($_SERVER['REQUEST_URI']));
+//var_dump($path);
+if(!isset($routes[$path[0]])){
+    include($routes["/home"]);
 }else{
-    include($routes[$uri[0]]);
+    include($routes[$path[0]]);
 }
+
