@@ -1,21 +1,18 @@
 <?php
 include("header.php");
 
+//partie à vérifier
 if(isset($_SESSION['user'])){
     $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
-    $requser->execute(array($_SESSION['user']['id'])); //array to string conversion error
-    $user = $requser->fetch();
+}
 
-    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['email']) {
-        $newmail = htmlspecialchars($_POST['newmail']);
-        $insertmail = $db->prepare("UPDATE user SET email = ? WHERE id = ?");
-        $insertmail->execute(array($newmail, $_SESSION['user']['id']));
-        header("Location: ".redirect("/home"));
-    }
+if(isset($_POST["newemail"]) AND isset($_POST["confirmmail"])){
+    $insertmail = $db->prepare("UPDATE user SET email = '{$_POST["newemail"]}'");
+    $insertmail->execute(array($_POST["newemail"], $_SESSION['user']['id']));
 }
-else{
-    echo("erreur");
-}
+//fin de partie à vérifier
+
+
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
@@ -65,13 +62,13 @@ display:
 <h2>Edit my profile</h2>
 <?php if(isset($error)){ echo $error; } ?>
 <form action="<?= redirect("/account"); ?>" method="POST">
-    <p>User : <?= $_SESSION["user"]["login"] ?> (you can't change your user name)</p>
-    <p>Your current email : <?= $_SESSION["user"]["email"] ?></p>
-    <label for="email">New email</label>
+    <p>Votre nom d'utilisateur: <?= $_SESSION["user"]["login"] ?> (vous ne pouvez pas le changer)</p>
+    <p>Votre adresse email : <?= $_SESSION["user"]["email"] ?></p>
+    <label for="email">Changez mon e-mail</label>
     <input required type="email" name="newemail" placeholder=<?= "new@email" ?>>
-    <label for="email">Confirm your email</label>
+    <label for="email">Confirmez mon email</label>
     <input required type="email" name="newemail" placeholder=<?= "new@email" ?>>
-    <label for="avatar">Add or udpate my avatar</label>
+    <label for="avatar">Ajouter ou modifier ma photo</label>
     <input type="file" name="avatar">
 
     <input type="submit" value = "Update my profil">
