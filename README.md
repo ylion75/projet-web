@@ -5,7 +5,7 @@ Projet réalisé dans le cadre de notre DUT Informatique. Ce projet consiste à 
 Nous avons travaillé sur la partie back-end avec PHP et une base de données MySQL.
 
 ## Mise en place du projet
-Téléchargez le projet : 
+Téléchargez le projet à cette adresse : 
    ```sh
    git clone https://github.com/ylion75/projet-web/tree/Dev
    ```
