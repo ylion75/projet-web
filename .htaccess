@@ -6,4 +6,4 @@ RewriteBase /
 # Ce qui permet de gérer les images correctement.
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ workspace/projet-web/routeur.php [L]
+RewriteRule ^(.+)$ projet-web-Dev/routeur.php [L]

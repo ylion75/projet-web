@@ -1,7 +1,6 @@
 <?php
 return [
     "" => "home.php",
-    //"projet-web-Dev" => "home.php",
     "home" => "home.php",
     "index" => "home.php",
     "login" => "login.php",
