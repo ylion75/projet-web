@@ -18,7 +18,7 @@ else{
 }
 
 
-/*
+
 if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
     $maxSize = 2097152;
     $validExtensions = array('jpg', 'jpeg', 'gif', 'png');
@@ -44,7 +44,7 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
         $msg = "Votre photo de profil ne doit pas dépasser 2Mo";
     }
 }
-*/
+
 ?>
 
 
@@ -54,8 +54,13 @@ if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
 <h1>Edit my profile</h1>
 <form action="<?= redirect("/signup"); ?>" method="POST">
     <p>User : <?= $_SESSION["user"]["login"] ?> (you can't change your user name)</p>
-    <label for="email">Change my email</label>
-    <input required type="email" name="newemail" placeholder=<?= $_SESSION["user"]["email"] ?>><br><br>
+    <p>Your current email : <?= $_SESSION["user"]["email"] ?></p>
+    <label for="email">New email</label>
+    <input required type="email" name="newemail" placeholder=<?= "new@email" ?>><br><br>
+    <label for="email">Confirm your email</label>
+    <input required type="email" name="newemail" placeholder=<?= "new@email" ?>><br><br>
+    <label for="avatar">Add or udpate my avatar</label>
+    <input type="file" name="avatar"><br><br>
 
     <input type="submit" value = "Update my profil">
 
