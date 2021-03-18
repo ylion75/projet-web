@@ -16,7 +16,7 @@ Afin de pouvoir vous connecter à la base de données, un export de celle-ci est
 ### Création d'un compte utilisateur
 Cette fonctionnalité permet à l'utilsateur de créer son compte et que le compte soit créé dans la base de donnée. 
 
-L'utilisateur peut choisir d'ajouter une photo à son profil. Nous avons choisit de stocker les images en local et non directement sur la base de donnée. Les images sont stockées avec le nom de l'utilisateur et l'extension du fichier correspondant.
+L'utilisateur peut choisir d'ajouter une photo à son profil. Nous avons choisit de stocker les images en local et non directement sur la base de données. Les images sont stockées avec le nom de l'utilisateur et l'extension du fichier correspondant dans le dossier ./members/avatars.
 Par ailleurs, nous avons ajouté un contrôle afin que la taille de la photo ne dépasse pas 2 Mo. Les formats sont également limités au jpg, jpeg, gif et au png. 
 
 ### Page de gestion de compte utilisateur
@@ -27,7 +27,6 @@ L'utilisateur peut également changer son image personnelle, les contrôles là-
 
 
 
-### Création et modification d'un compte utilisateur <br />
 ### Ajout d'un post et d'un commmentaire <br />
 ### Login / logout <br />
 ### Upvote & downvote d'un post <br />
