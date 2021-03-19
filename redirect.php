@@ -1,5 +1,5 @@
 <?php
 function redirect($path){
-    $base = "/projet-web-Dev";
+    $base = "/workspace/projet-web";
     return $base.$path;
 }
