@@ -1,5 +1,4 @@
 <?php
-include("header.php");
 
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
@@ -29,7 +28,7 @@ if(!$ok){
 }
 
 $_SESSION["user"] = $user;
-header("Location: ".redirect("/home"));
+header("Location: ".uri("/home"));
 exit;
 
 
@@ -45,13 +44,10 @@ display :
     }
 ?> 
 </p>
-<form action="<?= redirect("/login"); ?>" method="POST">
+<form action="<?= uri("/login"); ?>" method="POST">
     <label for="login">Enter your login</label>
     <input type="text" name="login">
     <label for="password">Enter your password</label>
     <input type="password" name="password">
     <input type="submit">
 </form>
-<?php
-    include("footer.php");
-?>

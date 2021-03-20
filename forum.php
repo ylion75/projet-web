@@ -1,8 +1,7 @@
 <?php
-require("header.php");
 
 if(!isset($_GET["forum_id"])){
-    header("Location: ".redirect("/page_not_found?error=forum inconnu"));
+    header("Location: ".uri("/page_not_found?error=forum inconnu"));
     exit;
 }
 
@@ -15,7 +14,7 @@ $request->execute(array($_GET["forum_id"]));
 $forum = $request->fetch();
 
 if($forum === false){
-    header("Location: ".redirect("/page_not_found?error=forum inconnu"));
+    header("Location: ".uri("/page_not_found?error=forum inconnu"));
     exit;
 }
 
@@ -40,7 +39,7 @@ $posts = $request->fetchAll();
     if(isset($_SESSION["user"])){
 ?>
 <h2>Add a post :<h2>
-<form action="<?= redirect("/add_post?forum_id={$forum["idForum"]}") ?>" method="POST">
+<form action="<?= uri("/add_post?forum_id={$forum["idForum"]}") ?>" method="POST">
     <label for="title">Choose a title</label>
     <input type="text" name="title" id="title">
     <label for="post">Enter your message</label>
@@ -57,13 +56,13 @@ $posts = $request->fetchAll();
 ?>
 <div>
     <dl>
-        <dt>Title</dt><dd><a href="<?= redirect("/post?post_id={$post["id"]}")  ?>"><?= $post["title"] ?></a></dd>
+        <dt>Title</dt><dd><a href="<?= uri("/post?post_id={$post["id"]}")  ?>"><?= $post["title"] ?></a></dd>
         <dt>Author</dt><dd><?= $post["login"] ?></dd>
         <dt>Date de Creation</dt><dd><?= $post["date"] ?></dd>
         <?php 
             if(isset($_SESSION["user"]) && $_SESSION["user"]["id"] === $post["user_id"]){
         ?>
-        <dt><a href="<?= redirect("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt><dd></dd>
+        <dt><a href="<?= uri("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt><dd></dd>
         <?php
             }
         ?>
@@ -71,5 +70,4 @@ $posts = $request->fetchAll();
 </div>
 <?php
     }
-    require("footer.php");
 ?>

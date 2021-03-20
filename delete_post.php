@@ -1,5 +1,4 @@
 <?php
-require("header.php");
 
 if(isset($_GET['postid'])){
     $sql = "SELECT f.idForum 
@@ -12,4 +11,4 @@ if(isset($_GET['postid'])){
     $db->prepare("DELETE FROM post WHERE post.id=?")->execute(array($_GET['postid']));
 }
 
-header("Location: ".redirect("//forum?forum_id={$forumId["idForum"]}"));
+header("Location: ".uri("/forum?forum_id={$forumId["idForum"]}"));
