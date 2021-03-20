@@ -1,7 +1,6 @@
 <?php
-session_start();
-include("db_connect.php");
-//$error = "";
+include("header.php");
+
 if($_SERVER['REQUEST_METHOD'] !== "POST"){
     goto display;
 }
@@ -16,7 +15,6 @@ $request->execute([
     'login' => $_POST["login"]
 ]);
 $user = $request->fetch();
-//var_dump($user);
 
 
 if($user === null){
@@ -31,7 +29,7 @@ if(!$ok){
 }
 
 $_SESSION["user"] = $user;
-header("Location: index.php");
+header("Location: ".redirect("/home"));
 exit;
 
 
@@ -39,17 +37,21 @@ display :
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>RedditBis</head>
-<body>
 <title>Log in</title>
-    <form action="login.php" method="POST">
-        <label for="login">Enter your login</label>
-        <input type="text" name="login">
-        <label for="password">Enter your password</label>
-        <input type="password" name="password">
-        <input type="submit">
-    </form>
-    </body>
-</html>
+<p> 
+<?php 
+    if(isset($error)){
+        echo $error;
+    }
+?> 
+</p>
+<form action="<?= redirect("/login"); ?>" method="POST">
+    <label for="login">Enter your login</label>
+    <input type="text" name="login">
+    <label for="password">Enter your password</label>
+    <input type="password" name="password">
+    <input type="submit">
+</form>
+<?php
+    include("footer.php");
+?>
