@@ -21,10 +21,13 @@ $requestURI = substr($requestURI, strlen($config["uri_prefix"]));
 $handler = $config["routes"][$requestURI];
 
 //$path = explode("?", basename($_SERVER['REQUEST_URI']));
-
-//if(!isset($config["routes"][$path[0]])){
 if(!isset($handler)){
-    require("handlers/".$config["routes"][""].".php");
-}else{
-    require("handlers/".$config["routes"][$path[0]].".php");
+    $handler = $config["routes"]["page_not_found"];
 }
+require("handlers/$handler.php");
+//if(!isset($config["routes"][$path[0]])){
+//if(!isset($handler)){
+    //require("handlers/".$config["routes"][""].".php");
+/*}else{
+    require("handlers/".$config["routes"][$path[0]].".php");
+}*/
