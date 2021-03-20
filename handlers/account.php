@@ -1,5 +1,4 @@
 <?php
-include("header.php");
 
 if(isset($_SESSION['user'])){
     $requser = $db->prepare("SELECT * FROM user WHERE id = ?");
@@ -56,20 +55,3 @@ display:
 
 ?>
 
-<h1>Account</h1>
-<h2>Edit my profile</h2>
-<?php if(isset($error)){ echo $error; } ?>
-<form action="<?= redirect("/account"); ?>" method="POST">
-    <p>Votre nom d'utilisateur: <?= $_SESSION["user"]["login"] ?> (vous ne pouvez pas le changer)</p>
-    <p>Votre adresse email : <?= $_SESSION["user"]["email"] ?></p>
-    <label for="email">Changez mon e-mail</label>
-    <input required type="email" name="newemail" placeholder=<?= "nouvel@email.com" ?>>
-    <label for="email">Confirmez mon email</label>
-    <input required type="email" name="newemail" placeholder=<?= "nouvel@email.com" ?>>
-    <label for="avatar">Ajouter ou modifier ma photo</label>
-    <input type="file" name="avatar">
-    <input type="submit" value = "Update my profil">
-</form>
-<?php
-    include("footer.php");
-?>

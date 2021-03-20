@@ -1,5 +1,4 @@
 <?php
-require("header.php");
 
 if(!isset($_GET["post_id"])){
     header("Location: ".redirect("/page_not_found?error=post inconnu"));
@@ -15,7 +14,7 @@ $request->execute(array($_GET["post_id"]));
 $post = $request->fetch();
 
 if($post === false){
-    header("Location: ".redirect("/page_not_found?error=post inconnu"));
+    header("Location: ".uri("/page_not_found?error=post inconnu"));
     exit;
 }
 
@@ -46,7 +45,7 @@ $comments = $db->query("SELECT c.*, u.login
                         WHERE p.id = {$post["id"]}
                         ORDER BY c.date, p.author")->fetchAll();
 ?>
-<h1><a href="<?= redirect("/forum?forum_id={$post["idForum"]}") ?>"><?= $post["forum_name"] ?></a></h1>
+<h1><a href="<?= uri("/forum?forum_id={$post["idForum"]}") ?>"><?= $post["forum_name"] ?></a></h1>
 <div>
     <dl>
         <dt>Title</dt>
@@ -60,7 +59,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="<?= redirect("/likes?post_id={$post["id"]}") ?>">Like</a>
+            <a href="<?= uri("/likes?post_id={$post["id"]}") ?>">Like</a>
             <?php 
                 }else{
             ?>
@@ -73,7 +72,7 @@ $comments = $db->query("SELECT c.*, u.login
         <dt><?php 
                 if(isset($_SESSION["user"])) { 
             ?>
-            <a href="<?= redirect("/dislikes?post_id={$post["id"]}") ?>">Dislike</a>
+            <a href="<?= uri("/dislikes?post_id={$post["id"]}") ?>">Dislike</a>
             <?php 
                 }else{
             ?>
@@ -85,7 +84,7 @@ $comments = $db->query("SELECT c.*, u.login
 <?php
     if(isset($_SESSION["user"]) && $post["author"] === $_SESSION["user"]["id"]) {
 ?>
-        <dt><a href="<?= redirect("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt>
+        <dt><a href="<?= uri("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt>
             <dd></dd>
 <?php
     }
@@ -96,7 +95,7 @@ $comments = $db->query("SELECT c.*, u.login
 <?php
     if(isset($_SESSION["user"])){
 ?>
-<form action="<?= redirect("/add_comment?post_id={$post["id"]}") ?>" method="POST">
+<form action="<?= uri("/add_comment?post_id={$post["id"]}") ?>" method="POST">
     <label for="comment">Add a comment:</label>
     <input type="text" name="comment" id="comment">
     <input type="submit">
@@ -118,6 +117,4 @@ $comments = $db->query("SELECT c.*, u.login
 </div>
 <?php
     }
-
-    require("footer.php");
 ?>

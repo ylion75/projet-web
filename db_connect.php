@@ -1,10 +1,12 @@
 <?php
 try{
-    $dsn = "mysql:host=localhost;dbname=reddit;port=3306;charset=utf8mb4";
-    $user = "root";
-    $pwd = "";
-
-    $db = new \PDO($dsn, $user, $pwd, [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
+    $db = new \PDO("mysql:host={$config["database"]["host"]};
+                   dbname={$config["database"]["dbname"]};
+                   port={$config["database"]["port"]};
+                   charset=utf8mb4", 
+                   $config["database"]["user"], 
+                   $config["database"]["password"], 
+                   [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]);
 }catch(\PDOException $e){
     echo "erreur lors de la connexion à la base";
 }

@@ -1,5 +1,4 @@
 <?php
-require("header.php");
 if(!isset($_GET["error"])){
     $error = "";
 }else{
@@ -17,6 +16,3 @@ if(!isset($_GET["error"])){
     }
 ?>
 </p>
-
-<?php
-    require("footer.php");
