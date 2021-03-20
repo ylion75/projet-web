@@ -1,50 +1,3 @@
-<?php
-
-if(!isset($_GET["post_id"])){
-    header("Location: ".redirect("/page_not_found?error=post inconnu"));
-    exit;
-}
-
-$sql = "SELECT p.*, u.login, f.nomForum as forum_name, f.idForum
-            FROM post p LEFT JOIN user u ON p.author=u.id
-                        LEFT JOIN forum f ON p.forum_id=f.idForum
-            WHERE p.id=?";
-$request = $db->prepare($sql);
-$request->execute(array($_GET["post_id"]));
-$post = $request->fetch();
-
-if($post === false){
-    header("Location: ".uri("/page_not_found?error=post inconnu"));
-    exit;
-}
-
-$sql = "SELECT like_id 
-        FROM likes 
-        WHERE post_id=?";
-$likes = $db->prepare("SELECT post_id FROM likes WHERE post_id= ? ");
-$likes->execute(array($post["id"]));
-$likes =  $likes->rowCount();
-
-$sql = "SELECT dislike_id 
-        FROM dislikes 
-        WHERE post_id=?";
-$dislikes = $db->prepare("SELECT post_id FROM dislikes WHERE post_id= ?");
-$dislikes->execute(array($post["id"]));
-$dislikes =  $dislikes->rowCount();
-
-$sql = "SELECT c.*, u.login
-        FROM user u
-        LEFT JOIN comment c ON c.author=u.id
-        LEFT JOIN post p ON p.id=c.parent_id
-        WHERE p.id=?
-        ORDER BY c.date, p.author";
-$comments = $db->query("SELECT c.*, u.login
-                        FROM user u
-                        LEFT JOIN comment c ON c.author = u.id
-                        LEFT JOIN post p ON p.id = c.parent_id
-                        WHERE p.id = {$post["id"]}
-                        ORDER BY c.date, p.author")->fetchAll();
-?>
 <h1><a href="<?= uri("/forum?forum_id={$post["idForum"]}") ?>"><?= $post["forum_name"] ?></a></h1>
 <div>
     <dl>
@@ -84,7 +37,7 @@ $comments = $db->query("SELECT c.*, u.login
 <?php
     if(isset($_SESSION["user"]) && $post["author"] === $_SESSION["user"]["id"]) {
 ?>
-        <dt><a href="<?= uri("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt>
+        <dt><a href="<?= uri("/delete_post?post_id={$post["id"]}") ?>">Delete</a></dt>
             <dd></dd>
 <?php
     }

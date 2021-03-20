@@ -1,11 +1,11 @@
 <?php
-$sql = "SELECT f.*, c.nom, c.id as categorie_id FROM forum f LEFT JOIN categorie c ON f.categorie_id=c.id";
-$forums = $db->query($sql)->fetchAll();
-if($forums !== null){
+    if(isset($_GET['message'])){
+        echo $_GET['message'];
+    }
 ?>
-
-<h2>Tous les forums :<h2>
+<h2>Tous les forums :</h2>
 <?php 
+if($forums !== null){
     foreach($forums as $forum){ 
 ?>
 <div>

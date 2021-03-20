@@ -8,7 +8,8 @@ function uri($path){
     return $config["uri_prefix"].$path;
 }
 
-function render($view){
+function render($view, $data){
+    extract($data);
     ob_start();
     require("views/$view.php");
     $content = ob_get_contents();
@@ -16,18 +17,12 @@ function render($view){
     require("views/layout.php");
 }
 
-$requestURI = $_SERVER["REQUEST_URI"];
-$requestURI = substr($requestURI, strlen($config["uri_prefix"]));
+$requestURI = explode("?", $_SERVER["REQUEST_URI"]);
+$requestURI = substr($requestURI[0], strlen($config["uri_prefix"]));
 $handler = $config["routes"][$requestURI];
 
-//$path = explode("?", basename($_SERVER['REQUEST_URI']));
 if(!isset($handler)){
     $handler = $config["routes"]["page_not_found"];
 }
+
 require("handlers/$handler.php");
-//if(!isset($config["routes"][$path[0]])){
-//if(!isset($handler)){
-    //require("handlers/".$config["routes"][""].".php");
-/*}else{
-    require("handlers/".$config["routes"][$path[0]].".php");
-}*/

@@ -1,31 +1,3 @@
-<?php
-
-if(!isset($_GET["forum_id"])){
-    header("Location: ".uri("/page_not_found?error=forum inconnu"));
-    exit;
-}
-
-$sql = "SELECT f.*, c.nom as category_name, u.login
-            FROM forum f LEFT JOIN categorie c ON f.categorie_id=c.id
-                         LEFT JOIN user u ON f.admin=u.id
-            WHERE f.idForum=?";
-$request = $db->prepare($sql);
-$request->execute(array($_GET["forum_id"]));
-$forum = $request->fetch();
-
-if($forum === false){
-    header("Location: ".uri("/page_not_found?error=forum inconnu"));
-    exit;
-}
-
-$sql = "SELECT p.*, u.login, u.id as user_id
-        FROM post p LEFT JOIN user u ON p.author=u.id
-        WHERE p.forum_id=?";
-$request = $db->prepare($sql);
-$request->execute(array($_GET["forum_id"]));
-$posts = $request->fetchAll();
-?>
-
 <h1><?= $forum["nomForum"] ?></h1>
 <div>
     <dl>
@@ -38,7 +10,7 @@ $posts = $request->fetchAll();
 <?php 
     if(isset($_SESSION["user"])){
 ?>
-<h2>Add a post :<h2>
+<h2>Add a post :</h2>
 <form action="<?= uri("/add_post?forum_id={$forum["idForum"]}") ?>" method="POST">
     <label for="title">Choose a title</label>
     <input type="text" name="title" id="title">
@@ -62,7 +34,7 @@ $posts = $request->fetchAll();
         <?php 
             if(isset($_SESSION["user"]) && $_SESSION["user"]["id"] === $post["user_id"]){
         ?>
-        <dt><a href="<?= uri("/delete_post?postid={$post["id"]}") ?>">Delete</a></dt><dd></dd>
+        <dt><a href="<?= uri("/delete_post?post_id={$post["id"]}") ?>">Delete</a></dt><dd></dd>
         <?php
             }
         ?>
