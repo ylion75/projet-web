@@ -1,3 +1,0 @@
-/**
-AFFICHE LES FORUMS AYANT LA CATEGORIE $_GET["categorie_id"]
- */
