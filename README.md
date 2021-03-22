@@ -18,6 +18,10 @@ git clone https://github.com/ylion75/projet-web
 
 Afin de pouvoir vous connecter à la base de données, un export de celle-ci est disponible dans le répertoire BDD (reddit.sql).
 
+### Parametre de connexion à la base de donnée
+
+Dans le fichier config.php vous trouverez les paramètres à modifier pour vous connecter à votre base de donées, mais aussi les routes.
+
 ### Parametre du routeur
 
 Mettre à jour le chemin du dossier qui ce trouve dans config.php ligne 2 ainsi que le fichier .htaccess ligne 10.
