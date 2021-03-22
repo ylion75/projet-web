@@ -1,5 +1,5 @@
 <?php
-$config["uri_prefix"] = "/projet-web-Dev";
+$config["uri_prefix"] = "/projet-web";
 
 $config["database"]["host"] = "localhost";
 $config["database"]["dbname"] = "reddit";
