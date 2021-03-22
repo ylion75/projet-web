@@ -7,10 +7,10 @@ Nous avons travaillé sur la partie back-end avec PHP et une base de données My
 ## Mise en place du projet
 Téléchargez le projet à cette adresse : 
    ```sh
-   git clone https://github.com/ylion75/projet-web/tree/Dev
+   git clone https://github.com/ylion75/projet-web
    ```
 ### Créez la base de donnée
-Afin de pouvoir vous connecter à la base de données, un export de celle-ci est disponible dans le répertoire BDD.
+Afin de pouvoir vous connecter à la base de données, un export de celle-ci est disponible dans le répertoire BDD (reddit.sql).
 
 ## Principales fonctionnalités 
 ### Création d'un compte utilisateur
